@@ -1,0 +1,134 @@
+---
+layout: default
+---
+<section class="bg-gray200 pt-5 pb-5">    
+    <div class="container">
+    	<div class="row justify-content-center">
+    		<div class="col-md-8">
+    			<article class="card">               
+					<div class="card-body">
+						<h1 class="display-4">
+							{{page.title}} 
+						</h1> 
+						{% if page.image %} 
+							<img class="card-img-top mb-2" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ page.image | absolute_url }}{% endif %}" alt="{{ page.title }}"> 
+						{% endif %}
+						<h5>
+							{{page.title}}
+						</h5>
+						{% if page.model_support == true %}
+						<span style="color: #742775; padding: 5px;">
+						<i class="fa fa-th-list" title="made for Model-driven Apps"></i>
+						<span style="color: #742775; font-weight:bold;">&nbsp;MODEL-DRIVEN APPS</span>
+						</span>
+						{% endif %}	
+						{% if page.canvas_support == true %}
+						<span style="color: #742775; padding: 5px;">
+						<i class="fa fa-paint-brush" title="made for Canvas Apps"></i>
+						<span style="color: #742775; font-weight:bold;">&nbsp;CANVAS APPS</span>
+						</span>
+						{% endif %}	
+						{% if page.portals_support == true %}
+						<span style="color: #742775; padding: 5px;">
+						<i class="fa fa-globe" title="made for Power Apps Portals"></i>
+						<span style="color: #742775; font-weight:bold;">&nbsp;PORTALS</span>
+						</span>
+						{% endif %}
+						<br/>
+						{% if page.license_defined == true %}
+						<span style="color: #742775; padding: 5px;">
+						<i class="fa fa-balance-scale" title="License is present"></i>
+						<span style="color: #742775; font-weight:bold;">&nbsp;LICENSE IS PRESENT</span>
+						</span>
+						{% endif %}	
+						{% if page.managed_solution == true %}
+						<span style="color: #742775; padding: 5px;">
+						<i class="fa fa-file-archive-o" title="Managed Solution available"></i>
+						<span style="color: #742775; font-weight:bold;">&nbsp;MANAGED SOLUTION AVAILABLE</span>
+						</span>
+						{% endif %}	
+						<hr>						
+						{{ content }}
+								
+						{% for page_author in page.authors %}
+							{% assign author = site.data.authors[page_author] %}
+							{% if author %}
+								Author: <b><a href="{{site.baseurl}}/authors#{{ page_author | downcase }}">{{author.name}}</a></b>
+								{% if author.twitter %}&nbsp;&nbsp;<a target="_blank" href="https://www.twitter.com/{{author.twitter}}"><i class="fa fa-twitter"></i></a>{% endif %}
+								{% if author.linkedin %}&nbsp;&nbsp;<a target="_blank" href="https://www.linkedin.com/in/{{author.linkedin}}/"><i class="fa fa-linkedin"></i></a>{% endif %}
+								{% if author.linkedin_company %}&nbsp;&nbsp;<a target="_blank" href="https://www.linkedin.com/company/{{author.linkedin_company}}/"><i class="fa fa-linkedin"></i></a>{% endif %}
+								{% if author.github %}&nbsp;&nbsp;<a target="_blank" href="https://github.com/{{author.github}}"><i class="fa fa-github"></i></a>{% endif %}
+								{% if author.website %}&nbsp;&nbsp;<a target="_blank" href="{{author.website}}"><i class="fa fa-rss"></i></a>{% endif %}
+								<br/>
+							{% endif %}
+						{% endfor %}
+						<br/>
+				{% if page.demo_youtube %}
+				<center>
+				Demo<br/>
+				<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/{{page.demo_youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>				
+				</center>
+				<br/>
+				 {% endif %}
+				{% if page.demo_video %}
+				<center>
+				Demo<br/>
+					<video width="100%" controls>
+   						 <source src="{{page.demo_video}}" type="video/mp4">
+					</video>
+					
+				<!--<iframe width="560" height="315" src="{{page.demo_video}}" frameborder="0" allowfullscreen></iframe>-->				
+				</center>
+				<br/>
+				 {% endif %}
+				{% if page.demo_gif %}
+				<center>
+				Demo<br/>
+					<img src="{{page.demo_gif}}" style="border: 1px solid #CCCCCC;">			
+				</center>
+				<br/>
+				 {% endif %}
+				
+					 {% if page.visit and page.download %}
+					<div class="row">
+						<div class="col-md-6" style="margin-top: 5px;">
+							<a target="_blank" href="{{page.visit}}" class="w-100 btn btn-primary font-weight-bold">Visit <i class="fa fa-external-link"></i></a>
+						</div>
+						<div class="col-md-6" style="margin-top: 5px;">
+							<a target="_blank" href="{{page.download}}" class="w-100 btn btn-primary font-weight-bold">Download <i class="fa fa-download"></i></a>
+						</div>					
+					</div><p></p>
+                    {% endif %}
+					{% if page.visit and page.download == nil %}					
+							<p><a target="_blank" href="{{page.visit}}" class="w-100 btn btn-primary font-weight-bold">Visit <i class="fa fa-external-link"></i></a></p>
+                    {% endif %}
+					{% if page.visit == nil and page.download %}
+							<p><a target="_blank" href="{{page.download}}" class="w-100 btn btn-primary font-weight-bold">Download <i class="fa fa-download"></i></a></p>					
+                    {% endif %}
+					
+                    {% assign sorted_cats = page.categories | sort %}
+					{% for category in sorted_cats %}
+                      <a class="btn btn-sm btn-primary mt-2" href="{{site.baseurl}}/categories#{{ category | downcase }}">
+                        # {{ category | downcase }}
+                      </a>
+                    {% endfor %}
+                    
+    				{% include comments.html %}
+                    
+    			</div>  
+                    
+    			</article>
+                
+                <div class="PageNavigation">
+                  {% if page.next.url %}
+                    <a class="prev" href="{{site.baseurl}}{{page.next.url}}"><i class="fa fa-angle-left"></i> </a>
+                  {% endif %}
+                  {% if page.previous.url %}
+                    <a class="next" href="{{site.baseurl}}{{page.previous.url}}"><i class="fa fa-angle-right"></i></a>
+                  {% endif %}
+                </div>
+                
+    		</div>
+    	</div>
+    </div>
+</section>
