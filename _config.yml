@@ -1,10 +1,10 @@
 # Site
-name: 'PCF Gallery'
-description: 'PCF Gallery is a collection of controls created with the PowerApps Component Framework'
+name: 'DV4T Gallery'
+description: 'DV4T Gallery is a collection of Power Apps for Microsoft Teams'
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 baseurl: ''
-disqus: 'pcfgallery'
+disqus: 'dv4tgallery'
 email: ''
 
 include: ["_pages"]
