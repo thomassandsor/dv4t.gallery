@@ -3,6 +3,7 @@ title: Linear slider with steps
 metadate: hide
 categories:
   - slider
+  - New Category
 image: /assets/images/linear-slider-with-steps.png
 visit: 
 download: 'https://github.com/MscrmTools/PCF-Controls'
